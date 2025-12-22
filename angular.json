@@ -41,7 +41,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/cofmpy-gui",
+            "outputPath": "dist/cofmupy-gui",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],

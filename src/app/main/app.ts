@@ -24,7 +24,7 @@ import { WebSocketService } from 'src/app/services/web-socket.service';
 })
 export class App {
   messages:any = [];
-  title = 'CoFmPy-Gui';
+  title = 'CoFmuPy-Gui';
   projectLoaded:boolean = false;
   project: any;
 
