@@ -25,7 +25,6 @@ jobs:
     
       
     steps:
-    - run: cd cofmupy-gui-app
     - uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
