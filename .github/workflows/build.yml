@@ -47,6 +47,7 @@ jobs:
     - name: Upload build as artifact
       uses: actions/upload-pages-artifact@v3
       with:
+        name: cofmupy-gui
         path: './dist/cofmupy-gui/browser'
 
   # Deploy job
