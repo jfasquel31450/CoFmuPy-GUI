@@ -39,7 +39,7 @@ jobs:
     - name: Build
       run: |
         ./node_modules/.bin/ng build
-        ls ./dist/cofmupy-gui
+        ls dist/cofmupy-gui
     - name: Add .nojekyll file
       run: touch ./dist/cofmupy-gui/browser/.nojekyll
       
