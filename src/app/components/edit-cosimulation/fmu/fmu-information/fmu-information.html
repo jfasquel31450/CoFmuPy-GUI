@@ -1,0 +1,28 @@
+<div class="flex-grow-1 d-flex" *ngIf="fmu.info">
+    <div class="d-flex m-1 flex-column" style="min-width: 300px;">
+        <div class="d-flex"><label class=""><b>Configuration</b></label></div>
+        <div class="d-flex ms-3"><label class=""><b>Id</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.id}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Name</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.name}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Path</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.path}}</label></div>
+        <div class="mt-2 border mb-2"></div>
+        <div class="d-flex mt-2"><label class=""><b>Model description</b></label></div>
+        <div class="d-flex ms-1"><label class=""><b>General information :</b></label></div>
+        <div class="d-flex ms-3"><label class=""><b>Fmi Version</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.fmiVersion}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Model name</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.modelName}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Description</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.description}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Author</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.author}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Version</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.version}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Generation</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.generationDateAndTime | date}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Tool</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.generationTool}}</label></div>
+        <div class="d-flex ms-1"><label class=""><b>Cosimulation information :</b></label></div>
+        <div class="d-flex ms-3"><label class=""><b>Handle step size</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.coSimulation.canHandleVariableCommunicationStepSize}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Fixed step size</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.coSimulation.fixedInternalStepSize}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Max Output Derivative</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.coSimulation.maxOutputDerivativeOrder}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Has Event Mode</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.coSimulation.hasEventMode}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Manage FMU States</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.coSimulation.canGetAndSetFMUstate}}</label></div>
+        <div class="d-flex ms-3"><label class=""><b>Serialize FMU States</b></label><label class="flex-grow-1 ms-3 px-1 text-end">{{fmu.info.coSimulation.canSerializeFMUstate}}</label></div>
+        <div class="mt-2 border"></div>
+    </div>
+    <ag-grid-angular class="flex-grow-1" [rowData]="fmu.info.modelVariables" [columnDefs]="colDefs" [theme]="gridTheme"
+        [gridOptions]="gridOptions" (cellEditingStopped)="onCellEditingStopped($event)" (gridReady)="onGridReady($event)" />
+</div>

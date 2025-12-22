@@ -1,0 +1,33 @@
+<div class="card-container h-100">
+    <div class="card text-center">
+        <div class="card-header">
+            <h3 *ngIf="projectIdToModify==''">{{title}}</h3>
+            <h3 *ngIf="projectIdToModify!=''">Modify a Project</h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup] = "newProjectForm" (ngSubmit) = "createNewProject()">
+                <div class="input-group form-group">
+                    <input [ngModel]="projectName" type="text" class="form-control" id = "projectName" formControlName = "projectName" placeholder="Project name">
+                    <!--<span *ngIf="projectName.invalid">Project name is required</span>-->
+                </div>
+                <br>
+                <div *ngIf="projectIdToModify==''" class="input-group form-group">
+                    <textarea [ngModel]="projectDescription" id="projectDescription" formControlName = "projectDescription" name = "projectDescription" class="form-control" placeholder="Project description" rows="4" style="resize: none;"></textarea>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input *ngIf="projectIdToModify==''" type="submit" value="Create Project" class="btn float-right btn-primary" [disabled]="!newProjectForm.valid">
+                    <input *ngIf="projectIdToModify!=''" type="submit" value="Save Modifications" class="btn float-right btn-primary" [disabled]="!newProjectForm.valid">
+                    <div *ngIf="modificationSaved" class="info">
+                        <span>Modification saved</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-center">
+                <a (click)=triggerShowProjectSelectionEvent()>Back</a>
+            </div>
+        </div>
+    </div>
+</div>

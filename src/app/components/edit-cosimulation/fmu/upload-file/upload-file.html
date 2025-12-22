@@ -1,0 +1,50 @@
+<!--input type="file" multiple class="file-input" (change)="onFileSelected($event)" #fileUpload>
+<div class="file-upload">
+    <div *ngIf="!fileNames">No file uploaded yet.</div>
+    <div *ngIf="fileNames">
+        <div *ngFor="let file of fileNames">
+            {{file}}
+        </div>
+    </div>
+    <button *ngIf="fileNames" class="btn button_toolbar border-0 text-light" type="button" (click)="onUpload()">
+        <i class="bi bi-upload"></i>
+    </button>
+</div>
+<form class="drag-area">
+    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+    <header>Drop file here</header>
+    <span>or </span>
+    <button class="btn text-light"><i class="bi bi-plus-circle"></i></button>
+    <input type="file" hidden>
+</form-->
+<form class="d-flex flex-column" style="overflow: auto;">
+    <div class="drag-area flex-grow-1 mb-3" (drop)="onDropFile($event)" (dragover)="onDragOver($event)">
+        <input type="file" id="fileUpload" class="file-upload" name="fileUpload" (change)="onFileSelected($event)" accept=".fmu">
+        <label *ngIf="!fmu.fileName" for="fileUpload" class="custom-button form-label">
+            Drop or choose file
+            <i class="bi bi-plus-circle"></i>
+        </label>
+        <label *ngIf="fmu.fileName" for="fileUpload" class="custom-button form-label">
+            {{fmu.fileName}}
+        </label>
+    </div>
+    <div>
+        <div *ngIf="fmu.fileName" class="d-flex g-3 align-items-center mb-3">
+            <label for="id" class="form-label">Id</label>
+            <input type="text" id="id" class="ms-2 form-control" [(ngModel)]="fmu.id" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div *ngIf="fmu.fileName" class="d-flex g-3 align-items-center mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" class="ms-2 form-control" [(ngModel)]="fmu.name"
+                [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="justify-content-end d-flex">
+            <button class="btn button_toolbar border-0 text-light" type="button" (click)="cancelUploadedEvent.emit()" title="Cancel">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <button *ngIf="fmu.fileName" class="btn button_toolbar border-0 text-light" type="button" (click)="onUpload()" title="Upload Fmu">
+                <i class="fs-4 bi bi-upload "></i>
+            </button>
+        </div>
+    </div>
+</form>

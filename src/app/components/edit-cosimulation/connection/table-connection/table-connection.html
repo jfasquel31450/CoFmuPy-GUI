@@ -1,0 +1,59 @@
+<div class="flex-grow-1 d-flex h-100 flex-column">
+    <form class="d-flex gap-3" *ngIf="addConnectionMode" [formGroup] = "newConnectionForm" (ngSubmit) = "validateNewConnection()">
+        <div class="border border-white rounded gap-3 align-items-center d-flex flex-grow-1 p-2">
+            <label class="" for="inlineFormInputGroupUsername">Source</label>
+            <div class="input-group">
+                <div class="input-group-text">Type</div>
+                <select class="form-select" id="source_type" formControlName="source_type">
+                    <option *ngFor="let type of connectionTypes" [ngValue]="type">{{type}}</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <div class="input-group-text">Id</div>
+                <select class="form-select" id="source_id" formControlName="source_id" (change)="findOutputsForFmu(newConnectionForm.controls['source_id'].value)">
+                    <option *ngFor="let fmu of fmus" [ngValue]="fmu.id">{{fmu.name}}</option>
+                </select>
+            </div>
+            <div class="input-group" *ngIf="newConnectionForm.controls['source_id'].valid">
+                <div class="input-group-text">Variable</div>
+                <select class="form-select" id="source_variable" formControlName="source_variable">
+                    <option *ngFor="let variable of sourceVariables" [ngValue]="variable">{{variable}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="border border-white rounded gap-3 align-items-center d-flex flex-grow-1 p-2">
+            <label class="" for="inlineFormInputGroupUsername">Target</label>
+            <div class="input-group">
+                <div class="input-group-text">Type</div>
+                <select class="form-select" id="target_type" formControlName="target_type">
+                    <option *ngFor="let type of connectionTypes" [ngValue]="type">{{type}}</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <div class="input-group-text">Id</div>
+                <select class="form-select" id="target_id" formControlName="target_id" (change)="findInputsForFmu(newConnectionForm.controls['target_id'].value)">
+                    <option *ngFor="let fmu of fmus" [ngValue]="fmu.id">{{fmu.name}}</option>
+                </select>
+            </div>
+            <div class="input-group" *ngIf="newConnectionForm.controls['target_id'].valid">
+                <div class="input-group-text">Variable</div>
+                <select class="form-select" id="target_variable" formControlName="target_variable">
+                    <option *ngFor="let variable of targetVariables" [ngValue]="variable">{{variable}}</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <button class="btn button_toolbar border-0 text-light" type="button" (click)="addConnectionMode = false"
+                title="Cancel">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <button *ngIf="newConnectionForm.valid" class="btn button_toolbar border-0 text-light" type="submit"
+                title="Validate">
+                <i class="fs-4 bi bi-upload "></i>
+            </button>
+        </div>
+    </form>
+    <ag-grid-angular class="flex-grow-1 mt-2" [rowData]="connections" [columnDefs]="colDefs" [theme]="gridTheme"
+        [gridOptions]="gridOptions"
+        (cellEditingStopped)="onCellEditingStopped($event)" (gridReady)="onGridReady($event)" />
+</div>

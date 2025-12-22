@@ -1,0 +1,28 @@
+<div class="h-100 d-flex flex-column">
+    <header>
+        <app-header-toolbar (closeProjectEvent)="projectLoaded = false" (startSimulationEvent)="startSimulation($event)"></app-header-toolbar>
+    </header>
+    <main class="d-flex flex-column flex-grow-1">
+        <section class="content flex-grow-1 bg-dark">
+            <div class="h-100">
+                <div *ngIf="!projectLoaded" class="h-100">
+                    <app-project class="full-screen" *ngIf="projectState==0"
+                        (showProjectCreationCardEvent)="showCreateProjectForm()"
+                        (modifyProjectEvent)="showEditProjectForm($event)" [title]="'Available projects'"
+                        (loadProjectEvent)="retrieveCurrentProject()"></app-project>
+                    <app-create-project-form *ngIf="projectState==1" (showProjectSelectionEvent)="showLoadProjectForm()"
+                        [title]="'Create a new Edition Board'"
+                        (createProjectEvent)="retrieveCurrentProject()"></app-create-project-form>
+                    <app-create-project-form *ngIf="projectState==2" (showProjectSelectionEvent)="showLoadProjectForm()"
+                        [title]="'Edit an existing Edition Board'" [projectIdToModify]="projectIdToModify"
+                        (createProjectEvent)="retrieveCurrentProject()"></app-create-project-form>
+                </div>
+                <div *ngIf="projectLoaded" class="h-100">
+                    <app-edit-cosimulation class="full-screen" [project]="project"
+                        (closeProjectEvent)="projectLoaded = false"
+                        (projectChangeEvent)="retrieveCurrentProject()"></app-edit-cosimulation>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>

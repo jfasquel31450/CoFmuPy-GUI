@@ -1,0 +1,31 @@
+.navbar {
+    padding: 5px;
+    height: 40px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+.content {
+    padding: 5px;
+    border-bottom: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.title-navbar {
+    font-size: 20px;
+    font-weight: bold;
+}
+.nav-link {
+    color: whitesmoke;
+    border-radius: 5px;
+    padding: 0;
+    cursor: pointer;
+}
+.nav-link.active {
+    background-color: #555555;
+    color: #999999;
+}

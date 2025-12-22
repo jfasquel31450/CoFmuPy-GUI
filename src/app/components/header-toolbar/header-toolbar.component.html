@@ -1,0 +1,44 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" role="banner">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <button class="ms-3 btn button_toolbar border-0" type="button" (click)="returnHome()" data-toggle="tooltip" data-placement="bottom" title="Go to Home">
+            <i class="bi bi-house fs-4 text-white"></i>
+        </button>
+        <div class="title-navbar">{{title}}</div>
+    </div>
+    @if(sessionService.projectLoaded()){
+        <div class="text-end h-100 d-flex">
+            @if(projectUpdated){
+                <button class="btn button_toolbar border-0" type="button" (click)="requestSaveProject()"
+                    data-toggle="tooltip" data-placement="bottom" title="Save project">
+                    <i class="bi bi-floppy"></i>
+                </button>
+            }
+            @if(showSimulationParam){
+                <div class="d-flex h-100">
+                    <div class="input-group mb-3 h-100">
+                        <span class="input-group-text h-100" id="basic-addon1">Step</span>
+                        <input type="number" class="form-control h-100" style="width: 75px;" [(ngModel)]="stepSize">
+                    </div>
+                    <div class="input-group mb-3 h-100 ms-2">
+                        <span class="input-group-text h-100" id="basic-addon1">Time</span>
+                        <input type="number" class="form-control h-100" [(ngModel)]="simulationTime">
+                    </div>
+                    <button class="btn button_toolbar border-0 ms-2" type="button" (click)="requestStartSimulation()" data-toggle="tooltip"
+                        data-placement="bottom" title="Start simulation">
+                        <i class="bi bi-play"></i>
+                    </button>
+                </div>
+            }
+            @if(!showSimulationParam){
+            <button class="btn button_toolbar border-0" type="button" (click)="showSimulationParam=!showSimulationParam"
+                data-toggle="tooltip" data-placement="bottom" title="Start simulation">
+                <i class="bi bi-play-circle"></i>
+            </button>
+            }
+            <button class="btn button_toolbar border-0" type="button" (click)="requestCloseProject()" data-toggle="tooltip"
+                data-placement="bottom" title="Close project">
+                <i class="bi bi-x-circle"></i>
+            </button>
+        </div>
+    }
+</nav>

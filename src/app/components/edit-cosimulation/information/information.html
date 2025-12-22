@@ -1,0 +1,45 @@
+<div class="d-flex flex-column flex-grow-1">
+    <div class="navbar text-light">
+        <div class="title-navbar">General information</div>
+        <div class="text-end h-100">
+            <button *ngIf="hasChange" class="btn button_toolbar border-0" type="button" (click)="saveProject()"
+                data-toggle="tooltip" data-placement="bottom" title="Save project information">
+                <i class="bi bi-floppy"></i>
+            </button>
+        </div>
+    </div>
+    <form *ngIf="project" class="text-light content flex-grow-1">
+        <div class="d-flex g-3 align-items-center mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" class="ms-2 form-control" [(ngModel)]="project.name" [ngModelOptions]="{standalone: true}" (input)="onChangeForm($event)">
+        </div>
+        <div class="d-flex mb-3">
+            <label for="projectDescription" class="form-label">Description</label>
+            <textarea [(ngModel)]="project.description" [ngModelOptions]="{standalone: true}" id="projectDescription"
+                name="projectDescription" class="ms-2 form-control" placeholder="Project description" rows="4"
+                style="resize: none;" (input)="onChangeForm($event)"></textarea>
+        </div>
+        <div class="d-flex mb-3">
+            <label class="form-label">Options</label>
+            <div class="ms-2">
+                <div class="mb-2 ms-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="jacobi"
+                            [(ngModel)]="project.config.cosim_method" [ngModelOptions]="{standalone: true}" (change)="onChangeForm($event)">
+                        <label class="form-check-label" for="inlineRadio2">jacobi</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input pointer" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="gauss_seidel"
+                            [(ngModel)]="project.config.cosim_method" [ngModelOptions]="{standalone: true}" (change)="onChangeForm($event)">
+                        <label class="form-check-label" for="inlineRadio1">gauss_seidel</label>
+                    </div>
+                </div>
+                <div class="form-check form-switch ms-3 mb-2">
+                    <label class="form-check-label" for="switchIterative">Iterative</label>
+                    <input class="form-check-input pointer" type="checkbox" role="switch" id="switchIterative"
+                        [(ngModel)]="project.config.iterative" [ngModelOptions]="{standalone: true}" (change)="onChangeForm($event)">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

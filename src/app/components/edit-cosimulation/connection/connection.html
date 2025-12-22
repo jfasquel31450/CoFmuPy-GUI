@@ -1,0 +1,48 @@
+<div class="text-light d-flex flex-column h-100">
+    <div class="navbar navbar-expand-lg">
+        <div class="title-navbar">Connections</div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-2" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" [ngClass]="{'active': currentTab == 'Diagram'}" aria-current="page" (click)="currentTab = 'Diagram'">Diagram</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [ngClass]="{'active': currentTab == 'Table'}" (click)="currentTab = 'Table'">Table</a>
+                </li>
+            </ul>
+        </div>
+        <div class="text-end h-100">
+            <button class="btn button_toolbar border-0" type="button" (click)="onAddConnection()" data-toggle="tooltip"
+                data-placement="bottom" title="Add connection" *ngIf="currentTab == 'Table'">
+                <i class="bi bi-plus-circle"></i>
+            </button>
+            <button class="btn button_toolbar border-0" type="button" (click)="onAutoConnection()"
+                data-toggle="tooltip" data-placement="bottom" title="Auto connect FMUs">
+                <i class="bi bi-stars"></i>
+            </button>
+            <button class="btn button_toolbar border-0" type="button" (click)="onAutoLayout()" data-toggle="tooltip"
+                data-placement="bottom" title="Auto layout" *ngIf="currentTab == 'Diagram'">
+                <i class="bi bi-layout-wtf"></i>
+            </button>
+            <button class="btn button_toolbar border-0" type="button" (click)="requestFullScreen()"
+                data-toggle="tooltip" data-placement="bottom" title="Full screen">
+                <i class="bi bi-arrows-fullscreen" *ngIf="!isFullScreen"></i>
+                <i class="bi bi-fullscreen-exit" *ngIf="isFullScreen"></i>
+            </button>
+        </div>
+    </div>
+    <div class="content d-flex flex-column flex-grow-1">
+        <app-go-js-connection #diagram *ngIf="currentTab == 'Diagram'" class="flex-grow-1"
+            [fmus]="project.config.fmus" [connections]="project.config.connections"
+            (projectChangeEvent)="onConnexionChange($event)" (requestFullScreenEvent)="requestFullScreenEvent.emit($event)">
+        </app-go-js-connection>
+        <app-table-connection #table *ngIf="currentTab == 'Table'" class="flex-grow-1"
+            [fmus]="project.config.fmus" [connections]="project.config.connections"
+            (projectChangeEvent)="onConnexionChange($event)">
+        </app-table-connection>
+    </div>
+</div>

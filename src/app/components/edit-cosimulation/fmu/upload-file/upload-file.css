@@ -1,0 +1,31 @@
+.drag-area {
+    border: 2px dashed #ccc;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.drag-area.highlight {
+    border-color: #4CAF50;
+}
+
+.custom-button {
+    cursor: pointer;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+header {
+    margin-bottom: 10px;
+}
+.file-upload {
+    display: none;
+}
+.form-control {
+    font-size: 14px;
+}
+.form-label {
+    font-size: 14px;
+}

@@ -1,0 +1,27 @@
+.btn {
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0);
+  }
+
+.btn:hover{
+    background:none;
+    filter: brightness(180%);
+    border: 1px solid #cccccc;
+  }
+
+  .btn:active{
+    background:none;
+    filter: brightness(80%);
+    border: 1px solid #222222;
+  }
+
+.btn_custom {
+    background-color: transparent;  
+    border: 1px solid #cccccc; 
+}
+
+.btn_custom:hover {
+    filter: brightness(180%);
+    border: 1px solid #cccccc; 
+    background-color: rgba(255, 255, 255, 0.3)
+}

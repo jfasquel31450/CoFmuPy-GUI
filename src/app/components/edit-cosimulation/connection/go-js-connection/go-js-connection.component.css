@@ -1,0 +1,14 @@
+#myFunctionalFlowDiv {
+    flex-grow: 1;
+    width: 100%;
+    overflow: hidden !important; /* override defaults */
+    position: relative;
+}
+
+.overlay{
+    position:absolute;
+    z-index: 10;
+    pointer-events: none;
+    overflow: hidden;
+}
+

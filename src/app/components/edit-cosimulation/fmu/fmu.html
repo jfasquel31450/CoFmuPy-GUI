@@ -1,0 +1,54 @@
+<div class="text-light d-flex flex-column flex-grow-1">
+    <div class="navbar navbar-expand-lg">
+        <div class="title-navbar">FMUs information</div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2"
+            aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-2" id="navbarSupportedContent2">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" [ngClass]="{'active': currentTab == 'Summary'}" aria-current="page"
+                        (click)="currentTab = 'Summary'">Summary</a>
+                </li>
+                <li class="nav-item" *ngFor="let fmu of fmusTabs">
+                    <div class="input-group">
+                        <a class="nav-link" [ngClass]="{'active': currentTab == fmu.name}"
+                        (click)="selectedFmu=fmu;currentTab = fmu.name">{{fmu.name}}</a>
+                        <button class="btn btn-tabs text-light nav-link" [ngClass]="{'active': currentTab == fmu.name}" type="button" id="button-addon2" title="Remove tab" (click)="removeFmuFromTabs(fmu)">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="text-end h-100">
+            <button class="btn button_toolbar border-0" type="button" (click)="onRequestNewFmu(true)"
+                data-toggle="tooltip" data-placement="bottom" title="New Fmu">
+                <i class="bi bi-plus-circle"></i>
+            </button>
+            <button class="btn button_toolbar border-0" type="button" (click)="requestFullScreen()" data-toggle="tooltip"
+                data-placement="bottom" title="Full screen">
+                <i class="bi bi-arrows-fullscreen" *ngIf="!isFullScreen"></i>
+                <i class="bi bi-fullscreen-exit" *ngIf="isFullScreen"></i>
+            </button>
+        </div>
+    </div>
+    <!--h3>FMUs information</h3-->
+    <div class="d-flex flex-grow-1 content">
+        <app-upload-file class="me-3" *ngIf="newFmuRequested" [project]="project" (fmuUploadedEvent)="fmuUploadedEvent.emit($event)" (cancelUploadedEvent)="onRequestNewFmu(false)"></app-upload-file>
+        <div class="flex-grow-1 d-flex" *ngIf="currentTab == 'Summary'">
+            <ag-grid-angular class="flex-grow-1"
+                [rowData]="fmus"
+                [columnDefs]="colDefs"
+                [theme]="gridTheme"
+                [gridOptions]="gridOptions"
+                (cellEditingStopped)="onCellEditingStopped($event)"
+                (gridReady)="onGridReady($event)"/>
+        </div>
+        <div class="flex-grow-1 d-flex" *ngIf="currentTab != 'Summary'">
+            <app-fmu-information class="flex-grow-1 d-flex" [project]="project" [fmu]="selectedFmu"></app-fmu-information>
+        </div>
+    </div>
+</div>
+

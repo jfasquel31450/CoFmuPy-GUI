@@ -1,0 +1,39 @@
+<div class="d-flex flex-column w-100 h-100 align-items-center justify-content-center">
+    <div class="d-flex flex-row pb-3">
+        <h3 class="px-4 text-white">{{title}}</h3>
+        <div>
+            <button type="button" class="btn" title="Create project" (click)="triggerShowProjectCreationCardEvent()">
+                <i class="bi bi-folder-plus text-white fs-4" ></i>
+            </button>
+            <button type="button" class="btn" title="Delete project" (click)="triggerDeleteProjectEvent()" [disabled]="!projects || !projects.length">
+                <i class="bi bi-folder-minus fs-4 text-white"></i>
+            </button>
+            <button type="button" class="btn" title="Modify project" (click)="triggerModifyProjectEvent()" [disabled]="!projects || !projects.length">
+                <i class="bi bi-pen text-white fs-4"></i>
+            </button>
+        </div>
+        
+    </div>
+    <form [formGroup] = "projectForm" id = "projectForm" (ngSubmit) = "onLoadProject()">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="bi bi-folder-fill"></i></span>
+                </div>
+                <select class="form-control" id="select_project" name="select_project" formControlName = "select_project">
+                    <option *ngIf="!projects || projects.length == 0" value="" disabled selected>No projects</option>
+                    <option *ngFor="let project of projects" [ngValue]="project">{{project.name}}</option>
+                </select>
+            </div>
+            <!--div *ngIf="projectForm.controls['select_project'].valid" class="form-text text-light text-start">{{(projectForm.controls['select_project'].value).description}}</div-->
+            <br>
+            <div class="form-group pt-3">
+                <input type="submit" value="Load Project" class="btn_custom ps-3 pe-3 pt-2 pb-2 border-white text-white rounded" [disabled]="!projects || !projects.length">
+            </div>
+            <br>
+        </div>
+            
+    </form>
+   
+
+</div>

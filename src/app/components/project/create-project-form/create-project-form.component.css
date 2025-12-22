@@ -1,0 +1,13 @@
+.card-container{
+    min-height:400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info{
+    color:lightgreen;
+}
+a:hover {
+    cursor:pointer;
+}
