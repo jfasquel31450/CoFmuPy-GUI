@@ -47,7 +47,7 @@ jobs:
     - name: Upload build as artifact
       uses: actions/upload-artifact@v4
       with:
-        name: cofmupy-gui${{ matrix.node-version }}
+        name: cofmupy-gui_V${{ matrix.node-version }}.zip
         path: './dist/cofmupy-gui/browser'
 
       
