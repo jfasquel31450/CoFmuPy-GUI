@@ -14,10 +14,6 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
-  
-defaults:
-  run:
-    working-directory: ./cofmupy-gui-app
 
 jobs:
   build:
@@ -29,7 +25,7 @@ jobs:
     
       
     steps:
-    - run: cd ./cofmupy-gui-app
+    - run: cd cofmupy-gui-app
     - uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
