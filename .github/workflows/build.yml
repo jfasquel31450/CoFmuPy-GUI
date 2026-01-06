@@ -20,17 +20,16 @@ jobs:
   build_app:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./cofmupy-gui-app
+        
     strategy:
       matrix:
         node-version: [20, 22]
     
-      
     steps:
     - uses: actions/checkout@v4
-
-    - name: navigate to app directory
-      run: 
-        cd ./cofmupy-gui-app
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
