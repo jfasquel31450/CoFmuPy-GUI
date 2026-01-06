@@ -27,7 +27,9 @@ jobs:
       
     steps:
     - name: navigate to app directory
-      run: cd cofmupy-gui-app
+      run: |
+        pwd
+        cd ./cofmupy-gui-app
 
     - uses: actions/checkout@v4
 
