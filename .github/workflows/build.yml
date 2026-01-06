@@ -15,14 +15,14 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+defaults:
+ run:
+  working-directory: ./cofmupy-gui-app
+
 jobs:
   # build job
   build_app:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./cofmupy-gui-app
         
     strategy:
       matrix:
