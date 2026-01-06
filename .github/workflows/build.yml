@@ -28,16 +28,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: navigate to app directory
+      run: |
+        pwd
+        cd ./cofmupy-gui-app
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-
-    - name: navigate to app directory
-      run: |
-        pwd
-        cd ./cofmupy-gui-app
         
     - name: Install Dependencies
       run: npm ci
