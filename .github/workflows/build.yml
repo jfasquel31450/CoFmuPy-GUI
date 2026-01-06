@@ -1,4 +1,4 @@
-name: Deploy App to Github pages
+name: Build App, package and export to artifacts
 
 on:
   push:
@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   # build job
-  build:
+  build_app:
     runs-on: ubuntu-latest
 
     strategy:
@@ -26,6 +26,9 @@ jobs:
     
       
     steps:
+    - name: navigate to app directory
+      run: cd cofmupy-gui-app
+
     - uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
