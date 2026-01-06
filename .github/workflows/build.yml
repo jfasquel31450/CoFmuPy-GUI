@@ -29,8 +29,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: navigate to app directory
-      run: |
-        pwd
+      run: 
         cd ./cofmupy-gui-app
 
     - name: Use Node.js ${{ matrix.node-version }}
