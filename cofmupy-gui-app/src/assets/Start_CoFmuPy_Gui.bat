@@ -66,6 +66,13 @@ echo Installation Done !
 goto start
 
 :StartWebApp
+
+REM Start backend application
+echo Activating virtual environment ...
+call ./venv/Scripts/activate
+echo Starting backend ...
+start /B waitress-serve --port=%BackendPort% --call cofmupy.server.app:create_app
+
 start /B node ./app.js %WebAppPort% %BackendPort%
 echo Running Front End Application, available on http://localhost:%WebAppPort%
 timeout 4 > NUL
