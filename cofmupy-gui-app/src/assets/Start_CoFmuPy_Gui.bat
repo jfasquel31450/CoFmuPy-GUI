@@ -1,11 +1,8 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-REM ensure we are in the correct working directory, allows one-click launch of teepee
+REM ensure we are in the correct working directory, allows one-click launch
 cd /D "%~dp0"
-
-REM node executable path
-set NodePath=..\tools\node-v22.13.0-win-x64
 
 REM set /P BackendPort=What is Backend API port (default port is 5000) ?
 set /P WebAppPort=What is your preferred web app port (default port is 4400) ?
@@ -21,6 +18,7 @@ echo ============================================ General commands
 echo -: stop all
 echo ^^!: quit
 echo /: clean screen
+echo i: install cofmupy library
 echo s: start application
 
 echo.
@@ -40,6 +38,7 @@ if '!choice!'=='/' goto CleanScreen
 if '!choice!'=='-' call :KillNodeApps
 if '!choice!'=='^^!' goto :eof
 if '!choice!'=='s' goto StartWebApp
+if '!choice!'=='i' goto InstallCoFmuPy
 
 REM --------------- Hereafter all command action -------------------------
 
@@ -52,6 +51,18 @@ REM Kill the running App
 :KillNodeApps
 echo i will stop all node programs runned by you
 taskkill /F /IM "node.exe"
+goto start
+
+:InstallCoFmuPy
+echo Installing virtual python environment ...
+C:\Users\jerome.fasquel\AppData\Local\Programs\Python\Python311\python.exe -m venv venv
+echo Activating virtual environment ...
+call ./venv/Scripts/activate
+echo Installing CoFmuPy and waitress ...
+python -m pip install cofmupy-1.0.0-py3-none-any.whl
+python -m pip install waitress
+echo Installation Done !
+
 goto start
 
 :StartWebApp
