@@ -36,6 +36,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        entrypoint: "./cofmupy-gui-app"
         
     - name: Install Dependencies
       run: npm ci
