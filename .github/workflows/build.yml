@@ -73,6 +73,12 @@ jobs:
         with:
           name: cofmupy-gui_final
           path: './deployed_app'
+      - name: Clean artifacts
+        uses: actions/delete_artifacts@v4
+        with:
+          name: |
+            cofmupy-gui_V20
+            cofmupy-gui_V22
 
 
       
