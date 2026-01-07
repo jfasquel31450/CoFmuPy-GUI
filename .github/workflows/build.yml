@@ -100,6 +100,13 @@ jobs:
           mv ./assets/*.bat .
           mv ./assets/*.sh .
 
+      - uses: actions/download-artifact@v4
+        with:
+          name: node-server
+          path: './node-server'
+      - name: Move app script
+        run: mv ./node-server/app.js ./deployed_app
+
       - name: Upload build as final artifact
         uses: actions/upload-artifact@v4
         with:
@@ -111,6 +118,7 @@ jobs:
           name: |
             cofmupy-gui_V20
             cofmupy-gui_V22
+            node-server
 
 
       
