@@ -83,7 +83,23 @@ jobs:
       with:
         name: cofmupy-gui_V${{ matrix.node-version }}
         path: './cofmupy-gui-app/dist/cofmupy-gui/browser'
-  
+
+  # Retrieve cofmupy
+  install_cofmupy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    - name: install cofmupy
+      run: pip install cofmupy --target ./cofmupy_lib
+    - name: Upload libs as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: cofmupy-lib
+        path: './cofmupy_lib'
+
   # Deploy app
   deploy_app:
     needs: [build_app, build_server]
@@ -112,6 +128,13 @@ jobs:
         with:
           name: cofmupy-gui_final
           path: './deployed_app'
+
+  # Clean artifacts
+  clean_artifacts:
+    needs: [deploy_app]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Clean artifacts
         uses: geekyeggo/delete-artifact@v5
         with:
@@ -119,6 +142,7 @@ jobs:
             cofmupy-gui_V20
             cofmupy-gui_V22
             node-server
+
 
 
       
