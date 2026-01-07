@@ -45,14 +45,35 @@ jobs:
       run: |
         ./node_modules/.bin/ng build
         ls ./dist/cofmupy-gui
-    - name: Add .nojekyll file
-      run: touch ./dist/cofmupy-gui/browser/.nojekyll
 
     - name: Upload build as artifact
       uses: actions/upload-artifact@v4
       with:
         name: cofmupy-gui_V${{ matrix.node-version }}
-        path: './dist/cofmupy-gui/browser'
+        path: './cofmupy-gui-app/dist/cofmupy-gui/browser'
+  
+  # Deploy app
+  deploy_app:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: cofmupy-gui_V${{ matrix.node-version }}
+          path: './cofmupy-gui-app/dist/cofmupy-gui/browser'
+      - name: Add .nojekyll file
+        working-directory: ./cofmupy-gui-app
+        run: touch ./dist/cofmupy-gui/browser/.nojekyll
+
+      - name: Upload build as final artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cofmupy-gui_final
+          path: './cofmupy-gui-app/dist/cofmupy-gui/browser'
+
 
       
 
