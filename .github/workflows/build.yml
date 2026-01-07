@@ -56,24 +56,23 @@ jobs:
   deploy_app:
     needs: [build_app]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20, 22]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
-          name: cofmupy-gui_V${{ matrix.node-version }}
-          path: './cofmupy-gui-app/dist/cofmupy-gui/browser'
-      - name: Add .nojekyll file
-        working-directory: ./cofmupy-gui-app
-        run: touch ./dist/cofmupy-gui/browser/.nojekyll
+          name: cofmupy-gui_V20
+          path: './deployed_app'
+      - name: Move files
+        working-directory: ./deployed_app
+        run: |
+          mv ./assets/*.bat .
+          mv ./assets/*.sh .
 
       - name: Upload build as final artifact
         uses: actions/upload-artifact@v4
         with:
           name: cofmupy-gui_final
-          path: './cofmupy-gui-app/dist/cofmupy-gui/browser'
+          path: './deployed_app'
 
 
       
