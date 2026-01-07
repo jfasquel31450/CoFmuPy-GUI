@@ -85,20 +85,20 @@ jobs:
         path: './cofmupy-gui-app/dist/cofmupy-gui/browser'
 
   # Retrieve cofmupy
-  install_cofmupy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-    - name: install cofmupy
-      run: pip install cofmupy --target ./cofmupy_lib
-    - name: Upload libs as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: cofmupy-lib
-        path: './cofmupy_lib'
+  #install_cofmupy:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #  - name: Set up Python
+  #    uses: actions/setup-python@v5
+  #    with:
+  #      python-version: '3.x'
+  #  - name: install cofmupy
+  #    run: pip install cofmupy --target ./cofmupy_lib
+  #  - name: Upload libs as artifact
+  #    uses: actions/upload-artifact@v4
+  #    with:
+  #      name: cofmupy-lib
+  #      path: './cofmupy_lib'
 
   # Deploy app
   deploy_app:
@@ -115,6 +115,7 @@ jobs:
         run: |
           mv ./assets/*.bat .
           mv ./assets/*.sh .
+          mv ./assets/cofmupy-1.0.0-py3.whl .
 
       - uses: actions/download-artifact@v4
         with:
