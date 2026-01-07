@@ -54,6 +54,7 @@ jobs:
   
   # Deploy app
   deploy_app:
+    needs: [build_app]
     runs-on: ubuntu-latest
     strategy:
       matrix:
