@@ -55,23 +55,16 @@ goto start
 
 :InstallCoFmuPy
 echo Installing virtual python environment ...
-C:\Users\jerome.fasquel\AppData\Local\Programs\Python\Python311\python.exe -m venv venv
+python -m venv venv
 echo Activating virtual environment ...
 call ./venv/Scripts/activate
-echo Installing CoFmuPy and waitress ...
-python -m pip install cofmupy-1.0.0-py3-none-any.whl
-python -m pip install waitress
+echo Installing CoFmuPy ...
+python -m pip install cofmupy
 echo Installation Done !
 
 goto start
 
 :StartWebApp
-
-REM Start backend application
-echo Activating virtual environment ...
-call ./venv/Scripts/activate
-echo Starting backend ...
-start /B waitress-serve --port=%BackendPort% --call cofmupy.server.app:create_app
 
 start /B node ./app.js %WebAppPort% %BackendPort%
 echo Running Front End Application, available on http://localhost:%WebAppPort%

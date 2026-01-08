@@ -1,4 +1,4 @@
-name: Build App, package and export to artifacts
+name: Build App, package and export as a standalone application
 
 on:
   push:
