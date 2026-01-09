@@ -126,7 +126,7 @@ jobs:
       - name: Upload build as final artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cofmupy-gui_final
+          name: cofmupy-gui_standalone
           path: './deployed_app'
 
   # Clean artifacts
