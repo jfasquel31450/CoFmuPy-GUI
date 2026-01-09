@@ -18,7 +18,6 @@ echo ============================================ General commands
 echo -: stop all
 echo ^^!: quit
 echo /: clean screen
-echo i: install cofmupy library
 echo s: start application
 
 echo.
@@ -38,7 +37,6 @@ if '!choice!'=='/' goto CleanScreen
 if '!choice!'=='-' call :KillNodeApps
 if '!choice!'=='^^!' goto :eof
 if '!choice!'=='s' goto StartWebApp
-if '!choice!'=='i' goto InstallCoFmuPy
 
 REM --------------- Hereafter all command action -------------------------
 
@@ -51,17 +49,6 @@ REM Kill the running App
 :KillNodeApps
 echo i will stop all node programs runned by you
 taskkill /F /IM "node.exe"
-goto start
-
-:InstallCoFmuPy
-echo Installing virtual python environment ...
-python -m venv venv
-echo Activating virtual environment ...
-call ./venv/Scripts/activate
-echo Installing CoFmuPy ...
-python -m pip install cofmupy
-echo Installation Done !
-
 goto start
 
 :StartWebApp
