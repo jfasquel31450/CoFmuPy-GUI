@@ -35,7 +35,7 @@ jobs:
           {
             "name": "cofmupy-gui",
             "version": "${GITHUB_REF_NAME}",
-            "api_compatibility": $(cat src/assets/metadata.json)
+            "api_compatibility": $(cat src/assets/api-compatibility.json)
           }
           EOF
 
