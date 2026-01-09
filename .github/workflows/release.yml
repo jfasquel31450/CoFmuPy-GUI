@@ -23,12 +23,8 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
       - run: npm ci
-      - run: ./node_modules/.bin/ng build --configuration production
+      - run: npm run build --configuration production
 
       - name: Archive dist
         run: |
