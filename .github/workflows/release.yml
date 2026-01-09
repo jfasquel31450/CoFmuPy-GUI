@@ -1,0 +1,52 @@
+name: Build & Release CoFmuPy-gui
+
+on:
+  push:
+    tags:
+      - v*
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./cofmupy-gui-app
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Generate metadata-dist.json
+        run: |
+          cat <<EOF > metadata-dist.json
+          {
+            "name": "cofmupy-gui",
+            "version": "${GITHUB_REF_NAME}",
+            "api_compatibility": $(cat src/assets/metadata.json)
+          }
+          EOF
+
+      - name: Archive dist
+        run: |
+          cd dist/cofmupy-gui/browser
+          zip -r CoFmuPy-gui-dist.zip .
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ./cofmupy-gui-app/dist/cofmupy-gui/browser/CoFmuPy-gui-dist.zip
+            ./cofmupy-gui-app/metadata-dist.json

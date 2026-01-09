@@ -1,7 +1,7 @@
 {
   "name": "node-server",
   "version": "1.0.0",
-  "description": "node server for data-manager-gui application",
+  "description": "node server for cofmupy-gui application",
   "main": "dist/app.js",
   "targets": {
     "main": {

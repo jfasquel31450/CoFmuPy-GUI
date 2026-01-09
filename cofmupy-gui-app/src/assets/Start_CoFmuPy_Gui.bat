@@ -1,11 +1,8 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-REM ensure we are in the correct working directory, allows one-click launch of teepee
+REM ensure we are in the correct working directory, allows one-click launch
 cd /D "%~dp0"
-
-REM node executable path
-set NodePath=..\tools\node-v22.13.0-win-x64
 
 REM set /P BackendPort=What is Backend API port (default port is 5000) ?
 set /P WebAppPort=What is your preferred web app port (default port is 4400) ?
@@ -55,6 +52,7 @@ taskkill /F /IM "node.exe"
 goto start
 
 :StartWebApp
+
 start /B node ./app.js %WebAppPort% %BackendPort%
 echo Running Front End Application, available on http://localhost:%WebAppPort%
 timeout 4 > NUL

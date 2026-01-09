@@ -16,7 +16,7 @@ export class HeaderToolbarComponent implements OnInit {
   stepSize: number = 0.001;
   simulationTime: number = 40;
 
-  title: string = 'CoFMPy - GUI';
+  title: string = 'CoFmuPy - GUI';
 
   @Input() projectUpdated:boolean = false;
 
