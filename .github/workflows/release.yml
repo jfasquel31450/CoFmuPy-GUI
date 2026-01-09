@@ -41,7 +41,7 @@ jobs:
 
       - name: Archive dist
         run: |
-          cd dist
+          cd dist/cofmupy-gui/browser
           zip -r CoFmuPy-gui-dist.zip .
 
       - name: Create Release
