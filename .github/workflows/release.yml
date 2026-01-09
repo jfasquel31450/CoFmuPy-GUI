@@ -48,5 +48,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ./cofmupy-gui-app/dist/CoFmuPy-gui-dist.zip
+            ./cofmupy-gui-app/dist/cofmupy-gui/browser/CoFmuPy-gui-dist.zip
             ./cofmupy-gui-app/metadata-dist.json
