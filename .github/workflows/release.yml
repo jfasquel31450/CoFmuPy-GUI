@@ -28,7 +28,7 @@ jobs:
           node-version: 18
 
       - run: npm ci
-      - run: npm run build --configuration production
+      - run: ./node_modules/.bin/ng build --configuration production
 
       - name: Archive dist
         run: |
