@@ -49,4 +49,4 @@ jobs:
         with:
           files: |
             ./cofmupy-gui-app/dist/CoFmuPy-gui-dist.zip
-            metadata-dist.json
+            ./cofmupy-gui-app/metadata-dist.json
