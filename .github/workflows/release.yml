@@ -8,6 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./cofmupy-gui-app
 
     steps:
       - uses: actions/checkout@v4
@@ -27,4 +31,4 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/CoFmuPy-gui-dist.zip
+          files: ./cofmupy-gui-app/dist/CoFmuPy-gui-dist.zip
